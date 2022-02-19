@@ -2,6 +2,7 @@ import os
 import streamlit as st
 import numpy as np
 from PIL import Image
+import cv2
 from main import model_image,model_video
 
 def load_image(image_file):
@@ -28,6 +29,13 @@ def download_video(path):
                     )
     
 
+def image2Array(uploaded_file):
+    if uploaded_file is not None:
+        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+        opencv_image = cv2.imdecode(file_bytes, 1)
+
+    #st.image(opencv_image, channels="BGR")
+    return opencv_image
 
 
 
@@ -41,7 +49,7 @@ def main():
        st.subheader('Upload a Images')
        img_file = image_upload()
 
-       img_array = np.array(img_file)
+       
        
        if img_file is not None:
            
@@ -55,11 +63,17 @@ def main():
            st.image(load_image(image_file=img_file),width=300)
 
            #Saving the image to Images folder
-           with open(os.path.join("images","pistol.png"),"wb") as f:
-               f.write((img_file).getbuffer())
+        #    with open(os.path.join("images","pistol.png"),"wb") as f:
+        #        f.write((img_file).getbuffer())
 
-           final_image = model_image(img_array)
+           npImage = image2Array(img_file)
+
+           final_image = model_image(npImage)
            st.image(final_image)
+    
+
+
+
     
     if choice == "Video":
         st.subheader("Upload a Video")

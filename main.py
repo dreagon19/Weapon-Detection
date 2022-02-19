@@ -17,7 +17,7 @@ def make_path():
 
 
 
-def model_image(img_array):
+def model_image(img):
 
     #calling makepath to delete the files stored from the previous execution of the program
     make_path()
@@ -29,9 +29,9 @@ def model_image(img_array):
     #img = 'images\pistol.png'
 
     #Passing the image through the model and saving the output in result.
-    result = model(img_array)
+    result = model(img)
     result.save()
-
+    
     #returning the path where output image is stored.
     path = 'runs\detect\exp\pistol.jpg'
     return path
