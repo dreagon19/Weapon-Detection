@@ -1,5 +1,6 @@
 import os
 import streamlit as st
+import numpy as np
 from PIL import Image
 from main import model_image,model_video
 
@@ -39,6 +40,8 @@ def main():
     if choice == "Images":
        st.subheader('Upload a Images')
        img_file = image_upload()
+
+       img_array = np.array(img_file)
        
        if img_file is not None:
            

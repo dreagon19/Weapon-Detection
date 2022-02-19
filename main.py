@@ -17,7 +17,7 @@ def make_path():
 
 
 
-def model_image():
+def model_image(img_array):
 
     #calling makepath to delete the files stored from the previous execution of the program
     make_path()
@@ -26,10 +26,10 @@ def model_image():
     model = torch.hub.load('ultralytics/yolov5','custom',path = 'weapon.pt')
     
     #Path to the test image 
-    img = 'images\pistol.png'
+    #img = 'images\pistol.png'
 
     #Passing the image through the model and saving the output in result.
-    result = model(img)
+    result = model(img_array)
     result.save()
 
     #returning the path where output image is stored.
