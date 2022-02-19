@@ -31,11 +31,10 @@ def download_video(path):
 
 def image2Array(uploaded_file):
     if uploaded_file is not None:
-        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-        opencv_image = cv2.imdecode(file_bytes, 1)
+        file = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
 
     #st.image(opencv_image, channels="BGR")
-    return opencv_image
+    return file
 
 
 
