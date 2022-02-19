@@ -52,7 +52,7 @@ def main():
            st.image(load_image(image_file=img_file),width=300)
 
            #Saving the image to Images folder
-           with open(os.path.join("images","pistol.png"),"wb") as f:
+           with open(os.path.join("images","/pistol.png"),"wb") as f:
                f.write((img_file).getbuffer())
 
 
