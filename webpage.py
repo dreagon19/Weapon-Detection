@@ -1,8 +1,6 @@
 import os
 import streamlit as st
-import numpy as np
 from PIL import Image
-import cv2
 from main import model_image,model_video
 
 def load_image(image_file):
@@ -29,14 +27,6 @@ def download_video(path):
                     )
     
 
-def image2Array(uploaded_file):
-    if uploaded_file is not None:
-        file = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-
-    #st.image(opencv_image, channels="BGR")
-    return file
-
-
 
 def main():
     st.title('Weapon Detection from IMAGES and VIDEOS')
@@ -62,12 +52,11 @@ def main():
            st.image(load_image(image_file=img_file),width=300)
 
            #Saving the image to Images folder
-        #    with open(os.path.join("images","pistol.png"),"wb") as f:
-        #        f.write((img_file).getbuffer())
+           with open(os.path.join("images","pistol.png"),"wb") as f:
+               f.write((img_file).getbuffer())
 
-           npImage = image2Array(img_file)
 
-           final_image = model_image(npImage)
+           final_image = model_image()
            st.image(final_image)
     
 
