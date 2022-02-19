@@ -58,7 +58,7 @@ def main():
            with open(os.path.join("images","pistol.png"),"wb") as f:
                f.write((img_file).getbuffer())
 
-           final_image = model_image()
+           final_image = model_image(img_array)
            st.image(final_image)
     
     if choice == "Video":
