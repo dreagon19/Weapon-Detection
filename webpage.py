@@ -24,7 +24,7 @@ def video_upload():
 #download the video
 def download_video(path):
     if path!= None:
-        with open("runs\output.mp4", "rb") as fp:
+        with open(path, "rb") as fp:
             btn = st.download_button(
                         label="Download Video",
                         data=fp,
