@@ -65,19 +65,27 @@ def model_video():
 
     while(vid.isOpened()):
         ret,frame = vid.read()
+
         if ret == True:
             make_path()
             result = model(frame)
-            result.save()
+
+            result.render()
+            result.imgs
+            final_img = None
+            for img in result.imgs:
+                 buffered = BytesIO()
+                 img_base64 = Image.fromarray(img)
+                 img_base64.save(buffered, format="JPEG")
+                 final_image=img
 
 
             #reading the image using opencv
             img_path = 'runs\detect\exp\image0.jpg'
-            read_image = cv2.imread(img_path)
-            # final_img = cv2.cvtColor(read_image,cv2.COLOR_BGR2RGB)
+            # read_image = cv2.imread(img_path)
+            #final_img = cv2.cvtColor(read_image,cv2.COLOR_BGR2RGB)
 
-
-            output.write(read_image)  #change here or apply the model here
+            output.write(final_image)  #change here or apply the model here
             #delete the image
             if os.path.exists(img_path):
                 os.remove(img_path)
