@@ -2,10 +2,8 @@ import torch
 import os
 import shutil
 import cv2
-import numpy as np
 from PIL import Image
 from io import BytesIO
-import base64
 
 def make_path():
     #when the path is already present delete the path to avoid changing of path
@@ -76,10 +74,10 @@ def model_video():
             #reading the image using opencv
             img_path = 'runs\detect\exp\image0.jpg'
             read_image = cv2.imread(img_path)
-            final_img = cv2.cvtColor(read_image,cv2.COLOR_BGR2RGB)
+            # final_img = cv2.cvtColor(read_image,cv2.COLOR_BGR2RGB)
 
 
-            output.write(final_img)  #change here or apply the model here
+            output.write(read_image)  #change here or apply the model here
             #delete the image
             if os.path.exists(img_path):
                 os.remove(img_path)
