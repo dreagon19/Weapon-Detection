@@ -3,6 +3,9 @@ import os
 import shutil
 import cv2
 import numpy as np
+from PIL import Image
+from io import BytesIO
+import base64
 
 def make_path():
     #when the path is already present delete the path to avoid changing of path
@@ -17,24 +20,28 @@ def make_path():
 
 
 
-def model_image():
-
-    #calling makepath to delete the files stored from the previous execution of the program
+def model_image(image):
+    #image='not pistol.jpg'
     make_path()
-    
-    #loading the model using yolo v5
     model = torch.hub.load('ultralytics/yolov5','custom',path = 'weapon.pt')
     
-    #Path to the test image 
-    img = 'images\pistol.png'
+    result = model(image)
 
-    #Passing the image through the model and saving the output in result.
-    result = model(img)
-    result.save()
+    
+    result.render()
+    result.imgs
+    
+    final_image=None
 
-    #returning the path where output image is stored.
-    path = 'runs\detect\exp\pistol.jpg'
-    return path
+    for img in result.imgs:
+        buffered = BytesIO()
+        img_base64 = Image.fromarray(img)
+        img_base64.save(buffered, format="JPEG")
+        #print(base64.b64encode(buffered.getvalue()).decode('utf-8')) 
+        final_image=img   
+  
+    return final_image
+
 
 
 def model_video():
