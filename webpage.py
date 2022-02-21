@@ -74,11 +74,12 @@ def main():
     
     if choice == "Video":
         st.subheader("Paste a youtube video url")
-        url = st.text_input('Paste a Youtube url','https://www.youtube.com/watch?v=_LlJKf2UcU4')
+        iurl = 'https://www.youtube.com/watch?v=_LlJKf2UcU4'
+        url = st.text_input('Paste a Youtube url',iurl)
 
         st.subheader("Upload a Video")
 
-        if url is not None:
+        if url != iurl:
             st.write("Please wait your youtube video file is loading")
             model_video(url)
         else:
