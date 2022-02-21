@@ -20,10 +20,9 @@ def image_upload():
 
 def video_upload():
     f = st.file_uploader("Upload Video")
-    if f is not None:
-        tfile = tempfile.NamedTemporaryFile(delete=False)
-        tfile.write(f.read())
-        return f,tfile    
+    tfile = tempfile.NamedTemporaryFile(delete=False)
+    tfile.write(f.read())
+    return f,tfile    
 
 #download the video
 # def download_video(path):
