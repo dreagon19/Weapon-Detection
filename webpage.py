@@ -44,8 +44,7 @@ def main():
     st.title('Weapon Detection from IMAGES and VIDEOS')
 
     menu=["Images","Video"]
-    # choice = st.sidebar.selectbox("Menu",menu)
-    choice ="Video"
+    choice = st.sidebar.selectbox("Menu",menu)
 
     if choice == "Images":
        st.subheader('Upload a Images')
