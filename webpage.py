@@ -23,9 +23,7 @@ def video_upload():
     if f is not None:
         tfile = tempfile.NamedTemporaryFile(delete=False)
         tfile.write(f.read())
-        return f,tfile
-    else:
-        return None    
+        return f,tfile    
 
 #download the video
 # def download_video(path):
@@ -80,35 +78,34 @@ def main():
         url = st.text_input('Paste a Youtube url','https://www.youtube.com/watch?v=_LlJKf2UcU4')
 
         st.subheader("Upload a Video")
-        flag_upload = video_upload()
-        if flag_upload is not None:
-            vid_file,temp_file = video_upload()
 
 
-            if vid_file is not None:
+        vid_file,temp_file = video_upload()
+
+
+        if vid_file is not None:
                 #vid detail dictionary
-                vid_detail = {
+            vid_detail = {
                     "filename":vid_file.name,
                     "filetype":vid_file.type,
                     "filesize":vid_file.size
                 }
-                st.write("Video Uploaded Successfully")
-                st.write(vid_detail)
-                st.write("Please wait while we process the video")
+            st.write("Video Uploaded Successfully")
+            st.write(vid_detail)
+            st.write("Please wait while we process the video")
 
                 #saving the video
                 # with open(os.path.join("video","video.mp4"),"wb") as f:
                 #     f.write((vid_file).getbuffer())
 
-                final_vid = model_video(temp_file)
+            final_vid = model_video(temp_file)
             
             
                 #downloading the final video
                 #download_video(final_vid)
-        else:
-            if url is not None:
-                st.write("Please wait your youtube video file is loading")
-                model_video(url)
+        if url is not None:
+            st.write("Please wait your youtube video file is loading")
+            model_video(url)
             
                         
 if __name__ == "__main__":
