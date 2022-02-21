@@ -78,33 +78,34 @@ def main():
 
         st.subheader("Upload a Video")
 
-
-        vid_file,temp_file = video_upload()
-
-
-        if vid_file is not None:
-                #vid detail dictionary
-            vid_detail = {
-                    "filename":vid_file.name,
-                    "filetype":vid_file.type,
-                    "filesize":vid_file.size
-                }
-            st.write("Video Uploaded Successfully")
-            st.write(vid_detail)
-            st.write("Please wait while we process the video")
-
-                #saving the video
-                # with open(os.path.join("video","video.mp4"),"wb") as f:
-                #     f.write((vid_file).getbuffer())
-
-            final_vid = model_video(temp_file)
-            
-            
-                #downloading the final video
-                #download_video(final_vid)
         if url is not None:
             st.write("Please wait your youtube video file is loading")
             model_video(url)
+        else:
+            vid_file,temp_file = video_upload()
+
+
+            if vid_file is not None:
+                    #vid detail dictionary
+                vid_detail = {
+                        "filename":vid_file.name,
+                        "filetype":vid_file.type,
+                        "filesize":vid_file.size
+                    }
+                st.write("Video Uploaded Successfully")
+                st.write(vid_detail)
+                st.write("Please wait while we process the video")
+
+                    #saving the video
+                    # with open(os.path.join("video","video.mp4"),"wb") as f:
+                    #     f.write((vid_file).getbuffer())
+
+                final_vid = model_video(temp_file)
+                
+                
+                    #downloading the final video
+                    #download_video(final_vid)
+        
             
                         
 if __name__ == "__main__":
